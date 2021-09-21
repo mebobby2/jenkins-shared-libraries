@@ -1,5 +1,5 @@
 def call(project, chartVersion, museumAddr, replaceTag = false, failIfExists = false) {
-    withCredentials([usernamePassword(credentialsId: "chartmuseum", usernameVariable: "USER", passwordVariable: "PASS")]) {
+    withCredentials([usernamePassword(credentialsId: "chart-museum", usernameVariable: "USER", passwordVariable: "PASS")]) {
         if (failIfExists) {
             yaml = readYaml file: "helm/${project}/Chart.yaml"
             out = sh returnStdout: true, script: "curl -u $USER:$PASS http://${museumAddr}/api/charts/${project}/${yaml.version}"
